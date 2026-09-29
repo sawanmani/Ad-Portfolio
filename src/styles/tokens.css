@@ -1,0 +1,49 @@
+/* Design tokens — colors, fonts, spacing, radius, shadows.
+   Every color/font used anywhere must come from here. */
+:root {
+  /* Palette (from DESIGN_SPEC) */
+  --bg-0: #12052b;
+  --bg-1: #2a0a5e;
+  --bg-2: #6d28d9;
+  --accent: #f7c948; /* banana yellow */
+  --accent-ink: #1b1200;
+  --text: #f5f0ff;
+  --muted: #b9a8e6;
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.14);
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing scale */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4.5rem;
+  --sp-9: 6rem;
+
+  /* Radius */
+  --r-pill: 999px;
+  --r-card: 18px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.5s;
+
+  /* Shadows */
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --shadow-pop: 0 30px 60px rgba(0, 0, 0, 0.45);
+
+  /* Layout */
+  --maxw: 1200px;
+  --nav-h: 64px;
+}

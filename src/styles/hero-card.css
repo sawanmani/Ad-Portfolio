@@ -1,0 +1,119 @@
+/* 3D hover pop-out hero card (core feature)
+   Layer order: back bg (z-1) < image < caption. Pointer tilt via --rx/--ry. */
+
+.hero-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: 100%;
+  width: min(300px, 27vw);
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  cursor: pointer;
+  overflow: visible; /* never clip the pop-out */
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.3s var(--ease-out);
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.5));
+}
+
+/* Back layer — tilts away & darkens on hover */
+.hero-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--r-card);
+  background: center / cover no-repeat;
+  transform-origin: bottom;
+  filter: brightness(0.9);
+  transition: transform var(--dur) var(--ease-out),
+    filter var(--dur) var(--ease-out);
+}
+.hero-card:hover .hero-card__bg,
+.hero-card.is-active .hero-card__bg {
+  transform: perspective(600px) rotateX(58deg);
+  filter: brightness(0.3);
+}
+
+/* Base subject — calm portrait shown at rest */
+.hero-card__img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  place-self: end center;
+  border-radius: var(--r-card);
+  filter: contrast(0.85) brightness(0.72);
+  transform-origin: bottom center;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0) scale(1);
+  opacity: 1;
+  transition: transform var(--dur) var(--ease-out),
+    filter var(--dur) var(--ease-out),
+    opacity var(--dur) var(--ease-out);
+  will-change: transform, filter;
+}
+/* Base fades out while the surprise shot takes over */
+.hero-card:hover .hero-card__img,
+.hero-card.is-active .hero-card__img {
+  opacity: 0;
+}
+
+/* Hover subject — mirrored surprise shot, hidden at rest, pops in on hover */
+.hero-card__img--hover {
+  opacity: 0;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0) scale(1) scaleX(-1);
+}
+.hero-card:hover .hero-card__img--hover,
+.hero-card.is-active .hero-card__img--hover {
+  opacity: 1;
+  filter: contrast(1) brightness(1.02);
+  transform: translate3d(var(--px, 0px), calc(var(--py, 0px) - 7%), 0)
+    scale(1.16) scaleX(-1);
+}
+
+/* Caption bar — flips up from the bottom on hover */
+.hero-card__caption {
+  grid-area: 1 / 1;
+  place-self: end center;
+  width: calc(100% + 2px);
+  padding: var(--sp-4);
+  background: linear-gradient(
+    180deg,
+    rgba(18, 5, 43, 0.2),
+    rgba(18, 5, 43, 0.92)
+  );
+  border-radius: 0 0 var(--r-card) var(--r-card);
+  transform-origin: top;
+  backface-visibility: hidden;
+  transform: perspective(500px) translateY(100%) rotateX(-90deg);
+  transition: transform var(--dur) var(--ease-out);
+}
+.hero-card:hover .hero-card__caption,
+.hero-card.is-active .hero-card__caption {
+  transform: perspective(500px) translateY(100%) rotateX(-28deg);
+}
+.hero-card__name {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.hero-card__role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+/* Placeholder frame when no image present yet */
+.hero-card__bg--fallback {
+  background: radial-gradient(
+      120% 90% at 50% 0%,
+      var(--bg-2) 0%,
+      transparent 60%
+    ),
+    linear-gradient(160deg, var(--bg-1), var(--bg-0));
+  border: 1px solid var(--glass-border);
+}
