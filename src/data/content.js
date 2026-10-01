@@ -25,8 +25,8 @@ export const nav = [
 ];
 
 export const socials = {
-  email: 'mailto:padraunapilot123@gmail.com',
-  github: 'https://github.com/',
+  email: 'mailto:adarshmtripathi@zohomail.in',
+  github: 'https://github.com/sawanmani',
   linkedin: 'https://www.linkedin.com/in/adarsh-mani-tripathi',
 };
 
@@ -52,44 +52,44 @@ export const projects = [
   {
     title: 'Commudle Sense',
     tag: 'Hack-E-Awadh · Runner-Up',
-    subtitle: 'Community-sensing platform — Lucknow AI Labs hackathon build',
+    subtitle: 'Community-sensing platform — Lucknow AI Labs hackathon build (Python)',
     href: 'https://github.com/sawanmani/Commudle-Sense',
-    thumb: '/images/project-1.jpg',
+    thumb: '/images/project-1.png',
   },
   {
     title: 'VoiceTrace',
     tag: 'SIH · 1st Rank',
     subtitle: 'Voice-first application — Smart India Hackathon internal winner (PSID 26104)',
-    href: '#',
-    thumb: '/images/project-2.jpg',
+    href: 'https://github.com/sawanmani/VoiceTrace',
+    thumb: '/images/project-2.png',
   },
   {
     title: 'J.U.N.I.O.R',
     tag: 'AI Assistant',
     subtitle: 'Jarvis-style helper — Google search + YouTube Music API in live on-page widgets',
-    href: '#',
-    thumb: '/images/project-3.jpg',
+    href: 'https://github.com/sawanmani/Junior-AI-Assistant',
+    thumb: '/images/project-3.png',
   },
   {
-    title: 'Scalable Responsive Web Apps',
-    tag: 'Frontend',
-    subtitle: 'JavaScript, HTML5/CSS3 & Angular — mobile-first, cross-browser',
-    href: '#',
-    thumb: '/images/project-4.jpg',
+    title: "Sawan's Buddy",
+    tag: 'Telegram AI Bot',
+    subtitle: 'Qwen3 (via OpenRouter) answers with Supabase conversation memory, hosted on Render',
+    href: 'https://github.com/sawanmani/myBuddy',
+    thumb: '/images/project-4.png',
   },
   {
-    title: 'Data Analytics & Viz Dashboard',
-    tag: 'Data / ML',
-    subtitle: 'Python + JavaScript turning raw datasets into insights',
-    href: '#',
-    thumb: '/images/project-5.jpg',
+    title: 'Patiparivar.in',
+    tag: 'Web / Frontend',
+    subtitle: 'Responsive informational website built with HTML5 & CSS3',
+    href: 'https://github.com/sawanmani/patiparivar.in',
+    thumb: '/images/project-5.png',
   },
   {
-    title: 'Chrome Extension',
-    tag: 'In Development',
-    subtitle: 'Utility extension with browser APIs & event-driven JS',
-    href: '#',
-    thumb: '/images/project-6.jpg',
+    title: 'Gcloud-Labs',
+    tag: 'Google Cloud',
+    subtitle: 'Hands-on Google Cloud skill-bootcamp lab exercises & scripts',
+    href: 'https://github.com/sawanmani/Gcloud-Labs',
+    thumb: '/images/project-6.png',
   },
 ];
 
@@ -195,19 +195,34 @@ export const timeline = [
 export const contact = {
   heading: "Let's build something",
   sub: 'Open to frontend / web-development roles, internships, collaborations and open-source.',
-  emailLabel: 'padraunapilot123@gmail.com',
+  emailLabel: 'adarshmtripathi@zohomail.in',
 };
 
+const GC_PROFILE =
+  'https://www.skills.google/public_profiles/4c5f929b-2b45-4505-ad05-154d2f03b57f';
+
 export const certifications = [
-  { year: '2026', title: 'NCMPCS-2026 Certificate of Participation', issuer: 'DSMNRU, Lucknow' },
-  { year: '2025', title: 'Google Cloud Arcade Facilitator — Cohort 1', issuer: 'Google Cloud' },
-  { year: '2025', title: 'Prompt Design in Vertex AI', issuer: 'Google Cloud Skills Boost' },
-  { year: '2025', title: 'Level 3: AI Readiness', issuer: 'Google Cloud Skills Boost' },
-  { year: '2025', title: 'Data Analytics Job Simulation', issuer: 'Deloitte Australia / Forage' },
-  { year: '2024', title: 'Application Development and Deployment', issuer: 'Google Cloud / LinkedIn Learning' },
-  { year: '2024', title: 'Machine Learning and AI Skills', issuer: 'LinkedIn Learning' },
-  { year: '2024', title: 'What Is Generative AI?', issuer: 'LinkedIn Learning' },
+  { year: '2026', title: 'NCMPCS-2026 — Research Paper Presentation', issuer: 'DSMNRU, Lucknow', link: '#' },
+  { year: '2025', title: 'Google Cloud Arcade Facilitator — Cohort 1', issuer: 'Google Cloud', link: GC_PROFILE },
+  { year: '2025', title: 'Level 3: AI Readiness', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2025', title: 'Responsible AI: Applying AI Principles', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2025', title: 'Use Machine Learning APIs on Google Cloud', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2025', title: 'Build a Data Warehouse with BigQuery', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2025', title: 'Build Serverless Apps with Cloud Run Functions', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2025', title: 'Manage Kubernetes in Google Cloud', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2025', title: 'Gemini for Data Scientists & Analysts', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2024', title: 'Introduction to Generative AI', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2024', title: 'Level 1: Application Development & Deployment', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2024', title: 'Level 2: Machine Learning and AI Skills', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2024', title: 'Derive Insights from BigQuery Data', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2024', title: 'Implement Cloud Security Fundamentals', issuer: 'Google Cloud Skills Boost', link: GC_PROFILE },
+  { year: '2024', title: 'Data Analytics Job Simulation', issuer: 'Deloitte Australia / Forage', link: '#' },
 ];
+
+export const credentialsLink = {
+  href: GC_PROFILE,
+  label: 'View all 100+ badges on my Google Cloud Skills Boost profile →',
+};
 
 export const footer = {
   note: 'Designed & built by Adarsh Mani Tripathi — 2026.',

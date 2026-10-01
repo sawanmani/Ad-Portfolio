@@ -7,6 +7,8 @@ import './styles/base.css';
 import './styles/layout.css';
 import './styles/components.css';
 import './styles/hero-card.css';
+import './styles/motion.css';
+import './styles/zip-intro.css';
 import './styles/responsive.css';
 
 createRoot(document.getElementById('root')).render(

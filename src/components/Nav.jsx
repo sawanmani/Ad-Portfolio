@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import { nav as links, profile } from '../data/content.js';
 import { useActiveSection } from '../hooks/useActiveSection.js';
+import MagneticButton from './ui/MagneticButton.jsx';
+import { ArrowUpRight } from './ui/Icons.jsx';
 
 const SECTION_IDS = links.map((l) => l.href.replace('#', ''));
 
@@ -91,7 +94,15 @@ export default function Nav() {
               }`}
               onClick={() => setOpen(false)}
             >
-              {l.label}
+              {active === l.href.slice(1) && (
+                <motion.span
+                  className="nav__pill"
+                  layoutId="nav-pill"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  aria-hidden="true"
+                />
+              )}
+              <span className="nav__link-text">{l.label}</span>
             </a>
           </li>
         ))}
@@ -106,9 +117,14 @@ export default function Nav() {
         </li>
       </ul>
 
-      <a href={profile.primaryCta.href} className="nav__cta">
-        {profile.primaryCta.label} ↗
-      </a>
+      <MagneticButton
+        href={profile.primaryCta.href}
+        className="nav__cta"
+        strength={0.5}
+      >
+        {profile.primaryCta.label}
+        <ArrowUpRight size={15} />
+      </MagneticButton>
     </nav>
   );
 }

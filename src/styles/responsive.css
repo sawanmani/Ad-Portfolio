@@ -79,8 +79,7 @@
     width: 100%;
     justify-content: center;
   }
-  .hud,
-  .featured {
+  .hud {
     position: static;
     width: auto;
     margin-top: var(--sp-4);

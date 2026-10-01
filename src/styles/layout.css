@@ -168,64 +168,82 @@
 /* Timeline */
 .timeline {
   display: grid;
-  gap: var(--sp-5);
+  gap: var(--sp-6);
   position: relative;
+  padding-left: 28px; /* space for spine + dots */
 }
 .timeline__item {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 140px 1fr;
   gap: var(--sp-5);
-  padding-left: var(--sp-5);
-  border-left: 1px solid var(--glass-border);
   position: relative;
+  z-index: 2; /* above spine */
 }
+/* Dot — sits on the spine line */
 .timeline__item::before {
   content: '';
   position: absolute;
-  left: -6px;
-  top: 8px;
+  left: -33px; /* aligns to spine at left:0 of .timeline */
+  top: 6px;
   width: 11px;
   height: 11px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 4px rgba(247, 201, 72, 0.16);
+  z-index: 3;
 }
 .timeline__when {
-  display: grid;
-  gap: var(--sp-2);
-  justify-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
 }
+.timeline__period {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  font-weight: 600;
+}
+/* Kind: inline colored label with icon, no box */
 .timeline__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   font-family: var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 0.15rem 0.55rem;
-  border: 1px solid var(--glass-border);
-  border-radius: var(--r-pill);
+  letter-spacing: 0.1em;
   color: var(--muted);
 }
-.timeline__item--award .timeline__kind {
+.timeline__kind--award {
   color: var(--accent);
-  border-color: rgba(247, 201, 72, 0.4);
+}
+.timeline__kind--work {
+  color: #a78bfa;
+}
+.timeline__kind--edu {
+  color: var(--muted);
+}
+.timeline__kind--project {
+  color: #6ee7b7;
 }
 /* Dot colour by kind */
 .timeline__item--work::before {
-  background: var(--bg-2);
-  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.32);
+  background: #a78bfa;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.24);
 }
 .timeline__item--edu::before {
   background: var(--muted);
-  box-shadow: 0 0 0 4px rgba(185, 168, 230, 0.2);
+  box-shadow: 0 0 0 4px rgba(185, 168, 230, 0.18);
 }
 .timeline__item--award::before {
   background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(247, 201, 72, 0.24), 0 0 16px rgba(247, 201, 72, 0.6);
+  box-shadow: 0 0 0 4px rgba(247, 201, 72, 0.24), 0 0 14px rgba(247, 201, 72, 0.5);
 }
 .timeline__item--project::before {
-  background: var(--bg-0);
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 0 3px rgba(247, 201, 72, 0.14);
+  background: #6ee7b7;
+  box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.2);
 }
 
 /* Contact */
