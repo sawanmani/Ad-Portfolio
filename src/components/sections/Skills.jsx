@@ -1,62 +1,40 @@
-import { motion, useReducedMotion } from 'motion/react';
 import { skills } from '../../data/content.js';
+import Reveal from '../Reveal.jsx';
 import SectionHead from '../SectionHead.jsx';
+import TiltCard from '../ui/TiltCard.jsx';
 
-// 3D dual marquee: two counter-rotating rows on tilted planes (parallax "ring").
-// Each track renders the list twice so translateX(-50%) loops seamlessly.
-function Track({ items, reverse = false }) {
-  const run = reverse ? 'marquee-rev' : 'marquee';
-  return (
-    <div className="marquee__track" style={{ animationName: run }}>
-      {[0, 1].map((dup) => (
-        <div className="marquee__half" key={dup}>
-          {items.map((s) => (
-            <span className="tag glass" key={s}>
-              {s}
-            </span>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
-
+// Tools grouped into category cards — each card's accent colour comes from its
+// `kind` (same colour language as the timeline dots). Same tile character as
+// projects/stats: 3D pointer tilt + glare + animated gradient-border on hover.
 export default function Skills() {
-  const reduced = useReducedMotion();
-  const half = Math.ceil(skills.marquee.length / 2);
-  const rowA = skills.marquee.slice(0, half);
-  const rowB = skills.marquee.slice(half);
-
   return (
     <section className="section" id="skills" aria-label="Skills">
       <div className="container">
         <SectionHead eyebrow="Skills" title="Tools I reach for" accent="daily." />
+
+        <div className="skills__grid">
+          {skills.categories.map((cat, i) => (
+            <Reveal key={cat.kind} delay={i * 0.08} className="skills__cell">
+              <TiltCard max={8} scale={1.02} glare className="skills__tilt">
+                <article className={`skillcat glass grad-border skillcat--${cat.kind}`}>
+                  <header className="skillcat__head">
+                    <span className="skillcat__dot" aria-hidden="true" />
+                    <h3 className="skillcat__label">{cat.label}</h3>
+                    <span className="skillcat__count">{cat.items.length}</span>
+                  </header>
+                  <ul className="skillcat__tags">
+                    {cat.items.map((s) => (
+                      <li key={s} className="tag glass tag--sm">
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </TiltCard>
+            </Reveal>
+          ))}
+        </div>
       </div>
-
-      <motion.div
-        className="marquee-stack"
-        aria-hidden="true"
-        initial={reduced ? false : { opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-10% 0px' }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="marquee marquee--left">
-          <Track items={rowA} />
-        </div>
-        <div className="marquee marquee--right">
-          <Track items={rowB} reverse />
-        </div>
-      </motion.div>
-
-      {/* accessible, non-animated list for screen readers */}
-      <ul className="container skills__list">
-        {skills.marquee.map((s) => (
-          <li key={s} className="tag glass">
-            {s}
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

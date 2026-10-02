@@ -30,7 +30,7 @@ export default function FeaturedCard() {
       role="group"
       aria-label={featured.title}
     >
-      <div className="featured__card glass">
+      <div className="featured__card glass grad-border">
         <span className="label">{featured.title}</span>
 
         <div className="featured__top">

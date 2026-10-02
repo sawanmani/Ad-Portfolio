@@ -12,6 +12,8 @@
   }
   .hero__right {
     order: 1;
+    /* stacked above the text — no headline-line anchor needed */
+    margin-top: 0;
   }
   .hero-card {
     width: min(320px, 70vw);
@@ -118,9 +120,6 @@
   }
   .hero-card:hover .hero-card__caption {
     transform: perspective(500px) translateY(100%) rotateX(-90deg);
-  }
-  .marquee__track {
-    animation-duration: 22s;
   }
 }
 

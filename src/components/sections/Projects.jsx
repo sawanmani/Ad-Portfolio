@@ -24,6 +24,7 @@ export default function Projects() {
                       src={p.thumb}
                       alt={`${p.title} preview`}
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         e.currentTarget.style.opacity = '0';
                       }}

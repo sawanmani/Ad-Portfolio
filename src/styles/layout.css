@@ -13,6 +13,8 @@
 
 /* ---------- HERO ---------- */
 .hero {
+  /* shared so the card can align to the headline's first line */
+  --h1-size: clamp(3.5rem, 9vw, 7.5rem);
   position: relative;
   min-height: 100svh;
   display: grid;
@@ -55,11 +57,12 @@
   background:
     radial-gradient(
       420px circle at var(--gx, 50%) var(--gy, 40%),
-      rgba(247, 201, 72, 0.16),
-      rgba(109, 40, 217, 0.22) 34%,
+      rgba(247, 201, 72, 0.18),
+      rgba(109, 40, 217, 0.25) 34%,
       transparent 62%
     );
-  mix-blend-mode: screen;
+  /* No mix-blend-mode: the glow follows the pointer every frame and screen
+     blending forces a full backdrop re-composite of the hero each move. */
 }
 .hero:hover .hero__glow,
 .hero.is-pointing .hero__glow {
@@ -90,7 +93,7 @@
 }
 
 .hero__h1 {
-  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  font-size: var(--h1-size);
 }
 
 .hero__h1 .accent {
@@ -120,8 +123,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* reserve space above so the pop-out head never leaves the viewport */
-  padding-top: clamp(2rem, 8vh, 5rem);
+  /* Anchor to the headline: card top starts at the bottom of the "Building"
+     line (one line-height = font-size × 1.05); the hover zoom (scale + rise)
+     carries the portrait up to the top of that line. */
+  align-self: start;
+  margin-top: calc(var(--h1-size) * 1.05);
   /* parallax layer */
   transform: translate3d(calc(var(--mx, 0) * 16px), calc(var(--my, 0) * 14px), 0);
   transition: transform 0.2s var(--ease-out);

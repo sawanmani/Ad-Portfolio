@@ -16,7 +16,11 @@
   transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
   transform-style: preserve-3d;
   transition: transform 0.3s var(--ease-out);
-  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.5));
+  /* box-shadow instead of filter: drop-shadow — a filter on this element
+     re-rendered on every tilt frame AND flattened the preserve-3d context.
+     Same resting look, near-zero cost while animating. */
+  border-radius: var(--r-card);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Back layer — tilts away & darkens on hover */
@@ -70,7 +74,9 @@
 .hero-card.is-active .hero-card__img--hover {
   opacity: 1;
   filter: contrast(1) brightness(1.02);
-  transform: translate3d(var(--px, 0px), calc(var(--py, 0px) - 7%), 0)
+  /* scale (bottom origin) + rise together carry the head up to the top of
+     the headline's first line, where the card's top edge begins */
+  transform: translate3d(var(--px, 0px), calc(var(--py, 0px) - 12%), 0)
     scale(1.16) scaleX(-1);
 }
 

@@ -58,6 +58,7 @@ export default function HeroCard() {
         className="hero-card__img"
         src={heroImage.cutout}
         alt={heroImage.alt}
+        decoding="async"
         onError={(e) => {
           e.currentTarget.style.opacity = '0';
         }}
@@ -68,6 +69,8 @@ export default function HeroCard() {
         src={heroImage.cutoutHover}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         onError={(e) => {
           e.currentTarget.style.display = 'none';
         }}

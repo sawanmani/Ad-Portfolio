@@ -99,29 +99,54 @@ export const featured = {
 };
 
 export const skills = {
-  marquee: [
-    'JavaScript (ES6+)',
-    'React',
-    'Angular',
-    'HTML5',
-    'CSS3',
-    'Python',
-    'TensorFlow / Keras',
-    'Machine Learning',
-    'REST APIs',
-    'Responsive Design',
-    'Google Cloud',
-    'Vertex AI',
-    'Firebase',
-    'MySQL',
-    'BigQuery',
-    'CI/CD',
-    'Git & GitHub',
-    'Figma',
-    'Data Analytics',
-    'Prompt Design',
-    'Cross-Browser Testing',
-    'Code Review',
+  // kind drives the category accent colour (same language as timeline dots)
+  categories: [
+    {
+      kind: 'frontend',
+      label: 'Frontend Engineering',
+      items: [
+        'JavaScript (ES6+)',
+        'React',
+        'Angular',
+        'HTML5',
+        'CSS3',
+        'Responsive Design',
+      ],
+    },
+    {
+      kind: 'aiml',
+      label: 'AI / ML',
+      items: [
+        'Python',
+        'Machine Learning',
+        'TensorFlow / Keras',
+        'Vertex AI',
+        'Prompt Design',
+      ],
+    },
+    {
+      kind: 'cloud',
+      label: 'Cloud, Data & APIs',
+      items: [
+        'Google Cloud',
+        'Firebase',
+        'MySQL',
+        'BigQuery',
+        'Data Analytics',
+        'REST APIs',
+      ],
+    },
+    {
+      kind: 'craft',
+      label: 'Workflow & Quality',
+      items: [
+        'Git & GitHub',
+        'CI/CD',
+        'Figma',
+        'Cross-Browser Testing',
+        'Code Review',
+      ],
+    },
   ],
 };
 

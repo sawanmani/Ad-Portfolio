@@ -4,8 +4,11 @@
 .glass {
   background: var(--glass);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  /* 8px (was 12px) — backdrop blur is re-run every frame the animated
+     background moves behind it; a smaller radius halves the cost and the
+     already-dark translucent bg keeps the frosted look. */
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   border-radius: var(--r-card);
   box-shadow: var(--shadow-soft);
 }
@@ -391,30 +394,89 @@
   color: var(--muted);
 }
 
-/* ---------- SKILLS MARQUEE ---------- */
-.marquee {
-  display: flex;
-  overflow: hidden;
-  gap: var(--sp-3);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+/* ---------- SKILLS: category cards ---------- */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--sp-5);
 }
-.marquee__track {
+.skills__cell {
+  height: 100%; /* equal-height cards across the row */
+}
+.skills__tilt {
+  height: 100%; /* tilt wrapper fills the cell so cards stay equal */
+}
+.skillcat {
+  height: 100%;
+  padding: var(--sp-5);
   display: flex;
-  gap: var(--sp-3);
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+/* Category accents reuse the timeline dot colours */
+.skillcat--frontend {
+  --cat-color: #a78bfa;
+}
+.skillcat--aiml {
+  --cat-color: var(--accent);
+}
+.skillcat--cloud {
+  --cat-color: #6ee7b7;
+}
+.skillcat--craft {
+  --cat-color: var(--muted);
+}
+.skillcat__head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.skillcat__dot {
   flex: none;
-  animation: marquee 30s linear infinite;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cat-color, var(--accent));
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06), 0 0 12px var(--cat-color, var(--accent));
 }
-.marquee:hover .marquee__track {
-  animation-play-state: paused;
+.skillcat__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text);
 }
-@keyframes marquee {
-  to { transform: translateX(-50%); }
+.skillcat__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-pill);
+  padding: 0.15rem 0.5rem;
+  line-height: 1.4;
+}
+.skillcat__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
 }
 .tag {
   padding: 0.55rem 1rem;
   border-radius: var(--r-pill);
   font-weight: 500;
   white-space: nowrap;
+}
+.tag--sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  transition: transform 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.skillcat__tags .tag--sm:hover {
+  transform: translateY(-2px);
+  border-color: var(--cat-color, var(--accent));
 }
 
 /* ---------- FLOATING BITS ---------- */

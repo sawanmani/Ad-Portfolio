@@ -15,7 +15,9 @@
 .aurora__blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
+  /* No filter: blur() here — animating transform over a 90px blur forces a
+     full GPU re-render every frame. The soft radial-gradient falloff reads
+     identically and costs nothing to composite. */
   opacity: 0.5;
   will-change: transform;
 }
@@ -63,8 +65,10 @@
   border-radius: 50%;
   pointer-events: none;
   z-index: -1;
-  background: radial-gradient(circle, rgba(109, 40, 217, 0.28), transparent 62%);
-  mix-blend-mode: screen;
+  background: radial-gradient(circle, rgba(109, 40, 217, 0.32), transparent 62%);
+  /* mix-blend-mode: screen removed — blending a 460px layer that moves on
+     every pointer frame forces expensive backdrop readback. On the dark bg
+     a slightly stronger gradient looks the same. */
 }
 @media (hover: none) {
   .cursor-glow {
@@ -95,6 +99,9 @@
   transform-style: preserve-3d;
   will-change: transform;
   height: 100%;
+  /* Same radius as the glass tiles — .tilt__glare inherits this, so the
+     pointer highlight no longer spills as a square arc past the card corners. */
+  border-radius: var(--r-card);
 }
 .tilt__glare {
   position: absolute;
@@ -141,7 +148,9 @@
 .grad-border::before {
   content: '';
   position: absolute;
-  inset: 0;
+  /* -1px so the ring traces the parent's outer border-box exactly —
+     inset:0 sat inside the 1px glass border and looked under-rounded. */
+  inset: -1px;
   border-radius: inherit;
   padding: 1px;
   background: conic-gradient(
@@ -195,41 +204,6 @@
 .pcard:focus-visible .pcard__go {
   opacity: 1;
   transform: none;
-}
-
-/* ---- Skills: 3D dual marquee ---- */
-.marquee-stack {
-  display: grid;
-  gap: var(--sp-4);
-  perspective: 900px;
-}
-.marquee--left,
-.marquee--right {
-  transform: rotateY(7deg) scale(0.98);
-}
-.marquee--right {
-  transform: rotateY(-7deg) scale(0.98);
-}
-.marquee__track {
-  align-items: center;
-}
-.marquee__half {
-  display: flex;
-  gap: var(--sp-3);
-  flex: none;
-  padding-right: var(--sp-3);
-}
-@keyframes marquee-rev {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-.skills__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: var(--sp-5);
-  list-style: none;
-  padding: 0;
 }
 
 /* ---- About: stat cards keep 3D depth for pop ---- */
@@ -330,13 +304,6 @@
   }
   .grad-border:hover::before {
     animation: none;
-  }
-  .marquee__track {
-    animation: none;
-  }
-  .marquee--left,
-  .marquee--right {
-    transform: none;
   }
   .flip__inner {
     transition: none;
