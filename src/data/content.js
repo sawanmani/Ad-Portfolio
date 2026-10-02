@@ -78,10 +78,10 @@ export const projects = [
     thumb: '/images/project-4.png',
   },
   {
-    title: 'Patiparivar.in',
-    tag: 'Web / Frontend',
-    subtitle: 'Responsive informational website built with HTML5 & CSS3',
-    href: 'https://github.com/sawanmani/patiparivar.in',
+    title: 'ReceiptSnap',
+    tag: 'AI Expense Tracker',
+    subtitle: 'Smart receipt scanning — AI extracts UPI payments & merchants, auto-categorizes expenses, exports tax-ready reports for Indian freelancers',
+    href: 'https://github.com/sawanmani/recieptsnap-frontend',
     thumb: '/images/project-5.png',
   },
   {
