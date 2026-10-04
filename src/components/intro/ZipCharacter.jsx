@@ -18,6 +18,7 @@ export default function ZipCharacter({ straining = false }) {
         src={imgSrc}
         alt={straining ? "Cyber Dev straining to pull zipper" : "Cyber Dev holding zipper"}
         className="zipchar-img"
+        decoding="async"
         draggable="false"
       />
     </div>

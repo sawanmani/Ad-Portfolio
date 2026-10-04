@@ -132,8 +132,12 @@ export default function ZipIntro({ onDone }) {
     else setStraining(false);
   };
 
-  // Dynamic blur fading as zipper opens
+  // Dynamic blur value kept for API compatibility, but no longer applied:
+  // a fullscreen animated backdrop-filter re-reads + re-blurs the whole
+  // viewport every frame and was the main source of lag on Vercel. The panels
+  // under it are opaque, so it was visually redundant anyway.
   const blurValue = useTransform(p, (v) => `blur(${20 - v * 20}px)`);
+  void blurValue;
 
   if (reduced) {
     return (
@@ -151,7 +155,6 @@ export default function ZipIntro({ onDone }) {
   return (
     <motion.div className={cls} initial={{ opacity: 1 }}
       animate={{ opacity: fading ? 0 : 1 }} transition={{ duration: 0.65 }}
-      style={{ backdropFilter: blurValue, WebkitBackdropFilter: blurValue }}
       aria-label="Intro — unzip to enter"
     >
       <div className="zipintro__light-leak" aria-hidden="true" />
@@ -165,6 +168,7 @@ export default function ZipIntro({ onDone }) {
           src={heroImage.cutout}
           alt={heroImage.alt}
           className="zipintro__hero-img zipintro__hero-img--calm"
+          decoding="async"
           style={{ opacity: heroCalmFade }}
         />
         <motion.img
@@ -172,6 +176,7 @@ export default function ZipIntro({ onDone }) {
           alt=""
           aria-hidden="true"
           className="zipintro__hero-img zipintro__hero-img--pop"
+          decoding="async"
           style={{ opacity: heroPopFade, transform: heroPopTf }}
         />
       </motion.div>

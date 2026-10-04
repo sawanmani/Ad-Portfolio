@@ -50,6 +50,13 @@ export const about = {
 
 export const projects = [
   {
+    title: 'KaushalPath',
+    tag: 'SIH 2026 · PSID 26241',
+    subtitle: 'AI career counselling with family decision-support for vocational education — explainable recommendations, Hindi/English Family Room, FastAPI + React PWA',
+    href: 'https://github.com/sawanmani/kaushalpath',
+    thumb: '/images/project-7.png',
+  },
+  {
     title: 'Commudle Sense',
     tag: 'Hack-E-Awadh · Runner-Up',
     subtitle: 'Community-sensing platform — Lucknow AI Labs hackathon build (Python)',

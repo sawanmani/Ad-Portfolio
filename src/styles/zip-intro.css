@@ -114,13 +114,15 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   color: #f7c948;
-  filter: drop-shadow(0 0 20px rgba(247, 201, 72, 0.8));
+  /* static glow — animating filter: drop-shadow here forced a GPU re-filter
+     twice per pulse cycle; the pulse now scales only (compositor-friendly) */
+  text-shadow: 0 0 18px rgba(247, 201, 72, 0.75), 0 0 40px rgba(247, 201, 72, 0.35);
   animation: pulse-strain 0.5s infinite alternate;
   text-transform: uppercase;
 }
 @keyframes pulse-strain {
-  0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(247, 201, 72, 0.5)); }
-  100% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(247, 201, 72, 1)); }
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
 }
 
 /* Left panel: Hero image display — two stacked portraits mirroring the
@@ -281,18 +283,15 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   position: relative;
 }
-/* Shimmer effect on teeth */
+/* Metallic sheen highlight — static. The previous version ran an infinite
+   opacity+transform shimmer on all 150 teeth at once, which repainted the
+   whole zipper column every frame and tanked FPS on Vercel. */
 .zip-tooth::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4) 50%, transparent);
-  animation: tooth-shimmer 3s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * 0.02s);
-}
-@keyframes tooth-shimmer {
-  0%, 100% { opacity: 0; transform: translateX(-100%); }
-  50% { opacity: 1; transform: translateX(100%); }
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28) 50%, transparent);
+  border-radius: inherit;
 }
 .zip-tooth--l {
   align-self: flex-start;
